@@ -310,7 +310,7 @@ class Paginator
         return null;
     }
 
-    public function getCurrentPageLastItem(): float|int|null
+    public function getCurrentPageLastItem()
     {
         $first = $this->getCurrentPageFirstItem();
         if (null === $first) {
@@ -324,7 +324,7 @@ class Paginator
         return $last;
     }
 
-    public function getCurrentPageFirstItem(): float|int|null
+    public function getCurrentPageFirstItem()
     {
         $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
         if ($first > $this->totalItems) {
