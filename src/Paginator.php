@@ -334,14 +334,14 @@ class Paginator
         return $first;
     }
 
-    public function setPreviousText($text): static
+    public function setPreviousText($text): Paginator
     {
         $this->previousText = $text;
 
         return $this;
     }
 
-    public function setNextText($text): static
+    public function setNextText($text): Paginator
     {
         $this->nextText = $text;
 
