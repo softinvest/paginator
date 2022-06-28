@@ -151,7 +151,7 @@ class Paginator
         }
         $html = '<nav><ul class="pagination justify-end">';
         if ($this->getPrevUrl()) {
-            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getPrevUrl()) . '">&laquo; ' . $this->previousText . '</a></li>';
+            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getPrevUrl()) . '">' . $this->previousText . '</a></li>';
         }
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
@@ -167,7 +167,7 @@ class Paginator
             }
         }
         if ($this->getNextUrl()) {
-            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . ' &raquo;</a></li>';
+            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . '</a></li>';
         }
         $html .= '</ul></nav>';
 
