@@ -1,0 +1,22 @@
+{
+  "name": "softinvest/paginator",
+  "description": "Paginator Component",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "softinvest",
+      "email": "c@bragin.su"
+    }
+  ],
+  "keywords": [
+    "Paginator Component"
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SoftInvest\\Helpers\\": "src"
+    }
+  }
+}
