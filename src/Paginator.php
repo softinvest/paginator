@@ -191,7 +191,7 @@ class Paginator
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
                 if ($page['isCurrent']) {
-                    $html .= '<button class="btn active">' . htmlspecialchars($page['num']) . '</button>';
+                    $html .= '<button class="btn btn-active">' . htmlspecialchars($page['num']) . '</button>';
                 } else {
                     $html .= '<a class="btn" href="' . htmlspecialchars(
                         $page['url']
