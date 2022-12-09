@@ -175,6 +175,41 @@ class Paginator
     }
 
     /**
+     * Render an HTML pagination control.
+     *
+     * @return string
+     */
+    public function toButtonsHtml(): string
+    {
+        if ($this->numPages <= 1) {
+            return '';
+        }
+        $html = '<div class="btn-group">';
+        if ($this->getPrevUrl()) {
+            $html .= '<a class="btn" href="' . htmlspecialchars($this->getPrevUrl()) . '">' . $this->previousText . '</a>';
+        }
+        foreach ($this->getPages() as $page) {
+            if ($page['url']) {
+                if ($page['isCurrent']) {
+                    $html .= '<button class="btn active">' . htmlspecialchars($page['num']) . '</button>';
+                } else {
+                    $html .= '<a class="btn" href="' . htmlspecialchars(
+                        $page['url']
+                    ) . '">' . htmlspecialchars($page['num']) . '</a>';
+                }
+            } else {
+                $html .= '<a class="btn btn-disabled" href="javascript:void(0)">' . htmlspecialchars($page['num']) . '</a>';
+            }
+        }
+        if ($this->getNextUrl()) {
+            $html .= '<a class="btn" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . '</a>';
+        }
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    /**
      * @return string|null
      */
     public function getPrevUrl(): ?string
