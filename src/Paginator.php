@@ -18,10 +18,10 @@ class Paginator
     protected string $nextText = 'Следующая';
 
     /**
-     * @param int $totalItems   the total number of items
+     * @param int $totalItems the total number of items
      * @param int $itemsPerPage the number of items per page
-     * @param int $currentPage  the current page number
-     * @param string $urlPattern   A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
+     * @param int $currentPage the current page number
+     * @param string $urlPattern A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
      */
     public function __construct(int $totalItems, int $itemsPerPage, int $currentPage, string $urlPattern = '')
     {
@@ -159,8 +159,8 @@ class Paginator
                     $html .= '<li class="active page-item"><span class="page-link">' . htmlspecialchars($page['num']) . '</span></li>';
                 } else {
                     $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars(
-                        $page['url']
-                    ) . '">' . htmlspecialchars($page['num']) . '</a></li>';
+                            $page['url']
+                        ) . '">' . htmlspecialchars($page['num']) . '</a></li>';
                 }
             } else {
                 $html .= '<li class="page-item disabled"><a href="javascript:void(0)">' . htmlspecialchars($page['num']) . '</a></li>';
@@ -194,8 +194,8 @@ class Paginator
                     $html .= '<button class="btn btn-active">' . htmlspecialchars($page['num']) . '</button>';
                 } else {
                     $html .= '<a class="btn" href="' . htmlspecialchars(
-                        $page['url']
-                    ) . '">' . htmlspecialchars($page['num']) . '</a>';
+                            $page['url']
+                        ) . '">' . htmlspecialchars($page['num']) . '</a>';
                 }
             } else {
                 $html .= '<a class="btn btn-disabled" href="javascript:void(0)">' . htmlspecialchars($page['num']) . '</a>';
@@ -306,7 +306,7 @@ class Paginator
      *
      * @return array
      */
-    protected function createPage(int $pageNum, bool $isCurrent = false):array
+    protected function createPage(int $pageNum, bool $isCurrent = false): array
     {
         return [
             'num' => $pageNum,
@@ -318,7 +318,7 @@ class Paginator
     /**
      * @return array
      */
-    protected function createPageEllipsis():array
+    protected function createPageEllipsis(): array
     {
         return [
             'num' => '...',
