@@ -36,7 +36,8 @@ class Paginator
 
     protected function updateNumPages(): void
     {
-        $this->numPages = (0 == $this->itemsPerPage ? 0 : (int)round($this->totalItems / $this->itemsPerPage));
+        // round?
+        $this->numPages = (0 == $this->itemsPerPage ? 0 : (int)ceil($this->totalItems / $this->itemsPerPage));
     }
 
     /**
@@ -149,62 +150,27 @@ class Paginator
         if ($this->numPages <= 1) {
             return '';
         }
-        $html = '<nav><ul class="pagination justify-end">';
+        $html = '<nav><ul class="inline-flex items-stretch -space-x-px">';
         if ($this->getPrevUrl()) {
-            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getPrevUrl()) . '">' . $this->previousText . '</a></li>';
+            $html .= '<li><a  class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" href="' . htmlspecialchars($this->getPrevUrl()) . '">' . $this->previousText . '</a></li>';
         }
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
                 if ($page['isCurrent']) {
-                    $html .= '<li class="active page-item"><span class="page-link">' . htmlspecialchars($page['num']) . '</span></li>';
+                    $html .= '<li><a href="javascript:void(0)"  class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">' . htmlspecialchars($page['num']) . '</a></li>';
                 } else {
-                    $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars(
+                    $html .= '<li><a class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" href="' . htmlspecialchars(
                             $page['url']
                         ) . '">' . htmlspecialchars($page['num']) . '</a></li>';
                 }
             } else {
-                $html .= '<li class="page-item disabled"><a href="javascript:void(0)">' . htmlspecialchars($page['num']) . '</a></li>';
+                $html .= '<li ><a href="javascript:void(0)" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">' . htmlspecialchars($page['num']) . '</a></li>';
             }
         }
         if ($this->getNextUrl()) {
-            $html .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . '</a></li>';
+            $html .= '<li><a class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . '</a></li>';
         }
         $html .= '</ul></nav>';
-
-        return $html;
-    }
-
-    /**
-     * Render an HTML pagination control.
-     *
-     * @return string
-     */
-    public function toButtonsHtml(): string
-    {
-        if ($this->numPages <= 1) {
-            return '';
-        }
-        $html = '<div class="btn-group">';
-        if ($this->getPrevUrl()) {
-            $html .= '<a class="btn" href="' . htmlspecialchars($this->getPrevUrl()) . '">' . $this->previousText . '</a>';
-        }
-        foreach ($this->getPages() as $page) {
-            if ($page['url']) {
-                if ($page['isCurrent']) {
-                    $html .= '<button class="btn btn-active">' . htmlspecialchars($page['num']) . '</button>';
-                } else {
-                    $html .= '<a class="btn" href="' . htmlspecialchars(
-                            $page['url']
-                        ) . '">' . htmlspecialchars($page['num']) . '</a>';
-                }
-            } else {
-                $html .= '<a class="btn btn-disabled" href="javascript:void(0)">' . htmlspecialchars($page['num']) . '</a>';
-            }
-        }
-        if ($this->getNextUrl()) {
-            $html .= '<a class="btn" href="' . htmlspecialchars($this->getNextUrl()) . '">' . $this->nextText . '</a>';
-        }
-        $html .= '</div>';
 
         return $html;
     }
