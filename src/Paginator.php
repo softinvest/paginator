@@ -2,7 +2,6 @@
 
 namespace SoftInvest\Helpers;
 
-use Illuminate\Support\Facades\Lang;
 use InvalidArgumentException;
 
 class Paginator
@@ -29,8 +28,6 @@ class Paginator
      */
     public function __construct(int $totalItems, int $itemsPerPage, int $currentPage, string $urlPattern = '')
     {
-        $this->nextText = Lang::get('cabinet.' . $this->nextText);
-        $this->previousText = Lang::get('cabinet.' . $this->previousText);
         $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
